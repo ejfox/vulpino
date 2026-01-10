@@ -65,6 +65,22 @@ struct VulpinoWidgetEntry: TimelineEntry {
     let date: Date
     let config: WidgetConfig?
     let displayData: WidgetDisplayData
+
+    /// The URL to open when the widget is tapped
+    var widgetURL: URL? {
+        // If config has a custom tap URL, use that
+        if let config = config, let tapURL = config.tapURL, let url = URL(string: tapURL) {
+            return url
+        }
+
+        // Otherwise, deep link to the widget's edit screen in the app
+        if let config = config {
+            return URL(string: "vulpino://widget/\(config.id.uuidString)")
+        }
+
+        // Fallback to just opening the app
+        return URL(string: "vulpino://")
+    }
 }
 
 // MARK: - Widget View
@@ -74,24 +90,27 @@ struct VulpinoWidgetView: View {
     let entry: VulpinoWidgetEntry
 
     var body: some View {
-        if let config = entry.config {
-            TemplateRenderer(template: config.template, data: entry.displayData)
-        } else {
-            // Placeholder for unconfigured widget
-            VStack(spacing: 8) {
-                Image(systemName: "square.grid.2x2")
-                    .font(.largeTitle)
-                    .foregroundStyle(.secondary)
-
-                if let error = entry.displayData.error {
-                    Text(error)
-                        .font(.caption)
+        Group {
+            if let config = entry.config {
+                TemplateRenderer(template: config.template, data: entry.displayData)
+            } else {
+                // Placeholder for unconfigured widget
+                VStack(spacing: 8) {
+                    Image(systemName: "square.grid.2x2")
+                        .font(.largeTitle)
                         .foregroundStyle(.secondary)
+
+                    if let error = entry.displayData.error {
+                        Text(error)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(VulpinoColors.background)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(VulpinoColors.background)
         }
+        .widgetURL(entry.widgetURL)
     }
 }
 
@@ -114,6 +133,7 @@ struct VulpinoWidget: Widget {
         .configurationDisplayName("Vulpino")
         .description("Display data from any JSON endpoint")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        .contentMarginsDisabled()
     }
 }
 
@@ -158,6 +178,29 @@ struct VulpinoWidgetBundle: WidgetBundle {
                 ("visitors", "2.4k"),
                 ("bounce", "34%"),
                 ("avg time", "2:41")
+            ],
+            timestamp: Date()
+        )
+    )
+}
+
+#Preview("Large", as: .systemLarge) {
+    VulpinoWidget()
+} timeline: {
+    VulpinoWidgetEntry(
+        date: Date(),
+        config: WidgetConfig(
+            name: "Dashboard",
+            template: .grid
+        ),
+        displayData: WidgetDisplayData(
+            values: [
+                ("users", "142"),
+                ("cpu", "58%"),
+                ("memory", "3.2GB"),
+                ("errors", "24"),
+                ("uptime", "99.9%"),
+                ("requests", "847/s")
             ],
             timestamp: Date()
         )

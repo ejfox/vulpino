@@ -6,6 +6,13 @@ struct WidgetListView: View {
     @State private var showingEditor = false
     @State private var editingConfig: WidgetConfig?
 
+    /// Deep link binding from app - when set, opens the widget editor for that ID
+    @Binding var deepLinkedWidgetId: UUID?
+
+    init(deepLinkedWidgetId: Binding<UUID?> = .constant(nil)) {
+        self._deepLinkedWidgetId = deepLinkedWidgetId
+    }
+
     var body: some View {
         NavigationStack {
             Group {
@@ -17,16 +24,19 @@ struct WidgetListView: View {
                             WidgetListRow(config: config)
                                 .contentShape(Rectangle())
                                 .onTapGesture {
+                                    Haptics.tap()
                                     editingConfig = config
                                 }
                                 .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                                     Button(role: .destructive) {
+                                        Haptics.warning()
                                         viewModel.delete(config)
                                     } label: {
                                         Label("Delete", systemImage: "trash")
                                     }
 
                                     Button {
+                                        Haptics.tap()
                                         viewModel.duplicate(config)
                                     } label: {
                                         Label("Duplicate", systemImage: "doc.on.doc")
@@ -35,6 +45,7 @@ struct WidgetListView: View {
                                 }
                                 .swipeActions(edge: .leading) {
                                     Button {
+                                        Haptics.tap()
                                         Task { await viewModel.refresh(config) }
                                     } label: {
                                         Label("Refresh", systemImage: "arrow.clockwise")
@@ -53,6 +64,7 @@ struct WidgetListView: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button {
+                        Haptics.tap()
                         showingEditor = true
                     } label: {
                         Image(systemName: "plus")
@@ -71,6 +83,14 @@ struct WidgetListView: View {
             }
             .onAppear {
                 viewModel.reload()
+            }
+            .onChange(of: deepLinkedWidgetId) { _, newId in
+                // Handle deep link - find and open the widget
+                if let widgetId = newId,
+                   let config = viewModel.configs.first(where: { $0.id == widgetId }) {
+                    editingConfig = config
+                    deepLinkedWidgetId = nil // Clear the deep link
+                }
             }
         }
     }
@@ -131,30 +151,39 @@ struct EmptyStateView: View {
         VStack(spacing: 24) {
             Spacer()
 
-            Image(systemName: "square.grid.2x2")
-                .font(.system(size: 60))
-                .foregroundStyle(.quaternary)
+            // Fox icon placeholder
+            ZStack {
+                Circle()
+                    .fill(Color.gray.opacity(0.1))
+                    .frame(width: 100, height: 100)
+
+                Image(systemName: "square.grid.2x2")
+                    .font(.system(size: 40))
+                    .foregroundStyle(.secondary)
+            }
 
             VStack(spacing: 8) {
                 Text("No Widgets Yet")
                     .font(.title2)
                     .fontWeight(.semibold)
 
-                Text("Create your first widget from any JSON endpoint")
+                Text("Create your first widget from any JSON endpoint.\nSixty seconds from URL to home screen.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
             }
 
             Button {
+                Haptics.confirm()
                 onCreateFirst()
             } label: {
                 Label("Create Widget", systemImage: "plus")
-                    .padding(.horizontal, 24)
-                    .padding(.vertical, 12)
+                    .font(.headline)
+                    .padding(.horizontal, 32)
+                    .padding(.vertical, 14)
                     .background(Color.blue)
                     .foregroundStyle(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
             }
 
             Spacer()
@@ -186,6 +215,7 @@ final class WidgetListViewModel: ObservableObject {
 
     func refresh(_ config: WidgetConfig) async {
         _ = await StorageService.shared.refreshWidget(configId: config.id)
+        Haptics.success()
         reload()
     }
 
@@ -193,6 +223,7 @@ final class WidgetListViewModel: ObservableObject {
         for config in configs {
             _ = await StorageService.shared.refreshWidget(configId: config.id)
         }
+        Haptics.success()
         reload()
     }
 }

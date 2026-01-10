@@ -9,6 +9,8 @@ public enum APIError: Error, LocalizedError {
     case authError
     case parseError(String)
     case noData
+    case responseTooLarge
+    case rateLimited
 
     public var errorDescription: String? {
         switch self {
@@ -26,6 +28,10 @@ public enum APIError: Error, LocalizedError {
             return "Couldn't parse response: \(message)"
         case .noData:
             return "No data received"
+        case .responseTooLarge:
+            return "Response too large (max 1MB)"
+        case .rateLimited:
+            return "Too many requests — please wait"
         }
     }
 }
@@ -37,6 +43,11 @@ public final class APIService: ObservableObject {
 
     private let session: URLSession
     private let timeout: TimeInterval = 10
+    private let maxResponseSize = 1_000_000 // 1MB limit
+    private let minRequestInterval: TimeInterval = 1.0 // 1 second between requests
+
+    /// Track last request time per host for rate limiting
+    private var lastRequestTimes: [String: Date] = [:]
 
     private init() {
         let config = URLSessionConfiguration.default
@@ -44,6 +55,20 @@ public final class APIService: ObservableObject {
         config.timeoutIntervalForResource = timeout
         config.waitsForConnectivity = false
         self.session = URLSession(configuration: config)
+    }
+
+    /// Check if we should rate limit requests to this host
+    private func checkRateLimit(for url: URL) throws {
+        guard let host = url.host else { return }
+
+        if let lastRequest = lastRequestTimes[host] {
+            let elapsed = Date().timeIntervalSince(lastRequest)
+            if elapsed < minRequestInterval {
+                throw APIError.rateLimited
+            }
+        }
+
+        lastRequestTimes[host] = Date()
     }
 
     /// Fetch JSON from a URL with optional headers
@@ -55,9 +80,13 @@ public final class APIService: ObservableObject {
             throw APIError.invalidURL
         }
 
+        // Rate limiting
+        try checkRateLimit(for: url)
+
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("Vulpino/1.0", forHTTPHeaderField: "User-Agent")
 
         // Add custom headers
         for header in headers {
@@ -73,6 +102,11 @@ public final class APIService: ObservableObject {
             throw APIError.timeout
         } catch {
             throw APIError.networkError(error)
+        }
+
+        // Check response size
+        if data.count > maxResponseSize {
+            throw APIError.responseTooLarge
         }
 
         // Check HTTP status

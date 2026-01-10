@@ -4,6 +4,7 @@ import SwiftUI
 struct WidgetListView: View {
     @StateObject private var viewModel = WidgetListViewModel()
     @State private var showingEditor = false
+    @State private var showingSettings = false
     @State private var editingConfig: WidgetConfig?
 
     /// Deep link binding from app - when set, opens the widget editor for that ID
@@ -62,6 +63,15 @@ struct WidgetListView: View {
             }
             .navigationTitle("Vulpino")
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        Haptics.tap()
+                        showingSettings = true
+                    } label: {
+                        Image(systemName: "gearshape")
+                    }
+                }
+
                 ToolbarItem(placement: .primaryAction) {
                     Button {
                         Haptics.tap()
@@ -70,6 +80,9 @@ struct WidgetListView: View {
                         Image(systemName: "plus")
                     }
                 }
+            }
+            .sheet(isPresented: $showingSettings) {
+                SettingsView()
             }
             .sheet(isPresented: $showingEditor) {
                 WidgetEditorView { _ in

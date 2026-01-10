@@ -91,6 +91,9 @@ struct MonoStatView: View {
                     .tracking(0.5)
             }
             .padding()
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("\(label): \(value)")
+            .accessibilityAddTraits(.isStaticText)
         }
     }
 }

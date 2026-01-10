@@ -1,0 +1,653 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		/* App Sources */
+		A1000001 /* VulpinoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001; };
+		A1000002 /* WidgetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000002; };
+		A1000003 /* WidgetEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000003; };
+		A1000004 /* WidgetEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000004; };
+		A1000005 /* JSONTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000005; };
+		A1000006 /* TemplatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000006; };
+		A1000007 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000007; };
+		A1000008 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000008; };
+		A1000009 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000009; };
+
+		/* Shared Sources (App) */
+		A1100001 /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3000001; };
+		A1100002 /* WidgetConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3000002; };
+		A1100003 /* WidgetTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3000003; };
+		A1100004 /* TemplateViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3000004; };
+
+		/* Widget Sources */
+		A1200001 /* VulpinoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4000001; };
+		A1200002 /* SelectWidgetIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4000002; };
+
+		/* Shared Sources (Widget) */
+		A1300001 /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3000001; };
+		A1300002 /* WidgetConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3000002; };
+		A1300003 /* WidgetTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3000003; };
+		A1300004 /* TemplateViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3000004; };
+		A1300005 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000008; };
+		A1300006 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000007; };
+		A1300007 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000009; };
+
+		/* Widget Extension */
+		A1400001 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5000001; };
+		A1400002 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5000002; };
+		A1400003 /* VulpinoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A6000002; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+
+		/* Assets */
+		A1500001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7000001; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A8000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A6000001;
+			remoteInfo = VulpinoWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A9000001 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A1400003 /* VulpinoWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		/* App Sources */
+		A2000001 /* VulpinoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VulpinoApp.swift; sourceTree = "<group>"; };
+		A2000002 /* WidgetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetListView.swift; sourceTree = "<group>"; };
+		A2000003 /* WidgetEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetEditorView.swift; sourceTree = "<group>"; };
+		A2000004 /* WidgetEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetEditorViewModel.swift; sourceTree = "<group>"; };
+		A2000005 /* JSONTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTreeView.swift; sourceTree = "<group>"; };
+		A2000006 /* TemplatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatePickerView.swift; sourceTree = "<group>"; };
+		A2000007 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		A2000008 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		A2000009 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+
+		/* Shared Sources */
+		A3000001 /* JSONValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
+		A3000002 /* WidgetConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConfig.swift; sourceTree = "<group>"; };
+		A3000003 /* WidgetTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTemplate.swift; sourceTree = "<group>"; };
+		A3000004 /* TemplateViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateViews.swift; sourceTree = "<group>"; };
+
+		/* Widget Sources */
+		A4000001 /* VulpinoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VulpinoWidget.swift; sourceTree = "<group>"; };
+		A4000002 /* SelectWidgetIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectWidgetIntent.swift; sourceTree = "<group>"; };
+
+		/* Frameworks */
+		A5000001 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		A5000002 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+
+		/* Products */
+		A6000001 /* Vulpino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vulpino.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6000002 /* VulpinoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VulpinoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+
+		/* Assets */
+		A7000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+
+		/* Info.plist */
+		A7000002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7000003 /* VulpinoWidget-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VulpinoWidget-Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1400001 /* WidgetKit.framework in Frameworks */,
+				A1400002 /* SwiftUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AB000001 = {
+			isa = PBXGroup;
+			children = (
+				AB000002 /* VulpinoApp */,
+				AB000003 /* Shared */,
+				AB000004 /* VulpinoWidget */,
+				AB000005 /* Frameworks */,
+				AB000006 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AB000002 /* VulpinoApp */ = {
+			isa = PBXGroup;
+			children = (
+				A2000001 /* VulpinoApp.swift */,
+				AB000007 /* Sources */,
+				A7000001 /* Assets.xcassets */,
+				A7000002 /* Info.plist */,
+			);
+			path = VulpinoApp;
+			sourceTree = "<group>";
+		};
+		AB000003 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				AB000008 /* Sources */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		AB000004 /* VulpinoWidget */ = {
+			isa = PBXGroup;
+			children = (
+				AB000009 /* Sources */,
+				A7000003 /* VulpinoWidget-Info.plist */,
+			);
+			path = VulpinoWidget;
+			sourceTree = "<group>";
+		};
+		AB000005 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A5000001 /* WidgetKit.framework */,
+				A5000002 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB000006 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A6000001 /* Vulpino.app */,
+				A6000002 /* VulpinoWidgetExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AB000007 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				AB000010 /* Views */,
+				AB000011 /* ViewModels */,
+				AB000012 /* Services */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		AB000008 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A3000001 /* JSONValue.swift */,
+				A3000002 /* WidgetConfig.swift */,
+				A3000003 /* WidgetTemplate.swift */,
+				A3000004 /* TemplateViews.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		AB000009 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A4000001 /* VulpinoWidget.swift */,
+				A4000002 /* SelectWidgetIntent.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		AB000010 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A2000002 /* WidgetListView.swift */,
+				A2000003 /* WidgetEditorView.swift */,
+				A2000005 /* JSONTreeView.swift */,
+				A2000006 /* TemplatePickerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AB000011 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A2000004 /* WidgetEditorViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AB000012 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A2000007 /* APIService.swift */,
+				A2000008 /* StorageService.swift */,
+				A2000009 /* KeychainService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AC000001 /* Vulpino */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD000001;
+			buildPhases = (
+				AC000002 /* Sources */,
+				AA000001 /* Frameworks */,
+				AC000003 /* Resources */,
+				A9000001 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AC000004 /* PBXTargetDependency */,
+			);
+			name = Vulpino;
+			productName = Vulpino;
+			productReference = A6000001 /* Vulpino.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AC000005 /* VulpinoWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD000002;
+			buildPhases = (
+				AC000006 /* Sources */,
+				AA000002 /* Frameworks */,
+				AC000007 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VulpinoWidgetExtension;
+			productName = VulpinoWidgetExtension;
+			productReference = A6000002 /* VulpinoWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A0000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					AC000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					AC000005 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = AD000003 /* Build configuration list for PBXProject "Vulpino" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AB000001;
+			productRefGroup = AB000006 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AC000001 /* Vulpino */,
+				AC000005 /* VulpinoWidgetExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AC000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1500001 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC000007 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AC000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000001 /* VulpinoApp.swift in Sources */,
+				A1000002 /* WidgetListView.swift in Sources */,
+				A1000003 /* WidgetEditorView.swift in Sources */,
+				A1000004 /* WidgetEditorViewModel.swift in Sources */,
+				A1000005 /* JSONTreeView.swift in Sources */,
+				A1000006 /* TemplatePickerView.swift in Sources */,
+				A1000007 /* APIService.swift in Sources */,
+				A1000008 /* StorageService.swift in Sources */,
+				A1000009 /* KeychainService.swift in Sources */,
+				A1100001 /* JSONValue.swift in Sources */,
+				A1100002 /* WidgetConfig.swift in Sources */,
+				A1100003 /* WidgetTemplate.swift in Sources */,
+				A1100004 /* TemplateViews.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC000006 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1200001 /* VulpinoWidget.swift in Sources */,
+				A1200002 /* SelectWidgetIntent.swift in Sources */,
+				A1300001 /* JSONValue.swift in Sources */,
+				A1300002 /* WidgetConfig.swift in Sources */,
+				A1300003 /* WidgetTemplate.swift in Sources */,
+				A1300004 /* TemplateViews.swift in Sources */,
+				A1300005 /* StorageService.swift in Sources */,
+				A1300006 /* APIService.swift in Sources */,
+				A1300007 /* KeychainService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AC000004 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AC000005 /* VulpinoWidgetExtension */;
+			targetProxy = A8000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AE000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AE000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AE000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VulpinoApp/Vulpino.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VulpinoApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Vulpino;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vulpino.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AE000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VulpinoApp/Vulpino.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VulpinoApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Vulpino;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vulpino.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AE000005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = VulpinoWidget/VulpinoWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "VulpinoWidget/VulpinoWidget-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = VulpinoWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vulpino.app.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AE000006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = VulpinoWidget/VulpinoWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "VulpinoWidget/VulpinoWidget-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = VulpinoWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vulpino.app.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AD000001 /* Build configuration list for PBXNativeTarget "Vulpino" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE000003 /* Debug */,
+				AE000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD000002 /* Build configuration list for PBXNativeTarget "VulpinoWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE000005 /* Debug */,
+				AE000006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD000003 /* Build configuration list for PBXProject "Vulpino" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE000001 /* Debug */,
+				AE000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A0000001 /* Project object */;
+}

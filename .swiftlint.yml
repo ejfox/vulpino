@@ -1,0 +1,55 @@
+# Vulpino SwiftLint Configuration
+
+disabled_rules:
+  - trailing_whitespace
+  - line_length
+  - function_body_length
+  - file_length
+  - type_body_length
+
+opt_in_rules:
+  - empty_count
+  - empty_string
+  - closure_spacing
+  - contains_over_first_not_nil
+  - discouraged_optional_boolean
+  - fallthrough
+  - first_where
+  - force_unwrapping
+  - implicitly_unwrapped_optional
+  - last_where
+  - literal_expression_end_indentation
+  - multiline_arguments
+  - multiline_parameters
+  - operator_usage_whitespace
+  - overridden_super_call
+  - pattern_matching_keywords
+  - prefer_self_type_over_type_of_self
+  - private_action
+  - private_outlet
+  - redundant_nil_coalescing
+  - sorted_first_last
+  - toggle_bool
+  - unneeded_parentheses_in_closure_argument
+  - vertical_parameter_alignment_on_call
+  - yoda_condition
+
+excluded:
+  - Pods
+  - .build
+  - DerivedData
+
+identifier_name:
+  min_length: 1
+  max_length: 50
+  excluded:
+    - id
+    - i
+    - x
+    - y
+
+nesting:
+  type_level: 3
+  function_level: 3
+
+reporter: xcode

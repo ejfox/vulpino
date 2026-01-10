@@ -26,28 +26,51 @@ enum VulpinoTypography {
 }
 
 /// Color palette - restrained, functional
+/// Uses semantic colors that adapt to light/dark mode gracefully
 enum VulpinoColors {
+    // Text colors - use semantic colors for proper adaptation
     static let primary = Color.primary
     static let secondary = Color.secondary
-    static let tertiary = Color(white: 0.6)
-    static let staleIndicator = Color.orange.opacity(0.7)
-    static let background = Color(white: 0.98)
+
+    // Tertiary needs to work in both modes
+    static var tertiary: Color {
+        Color(uiColor: .tertiaryLabel)
+    }
+
+    // Stale indicator - orange works in both modes
+    static let staleIndicator = Color.orange.opacity(0.8)
+
+    // Background - cream in light mode, respects dark mode
+    static var background: Color {
+        Color(uiColor: .systemBackground)
+    }
+
+    // Widget-specific background - slightly off-white for depth
+    static var widgetBackground: Color {
+        Color(uiColor: .secondarySystemBackground)
+    }
 }
 
 // MARK: - Base Widget Container
 
 struct WidgetContainer<Content: View>: View {
     let isStale: Bool
+    let accessibilityLabel: String?
     let content: () -> Content
 
-    init(isStale: Bool = false, @ViewBuilder content: @escaping () -> Content) {
+    init(
+        isStale: Bool = false,
+        accessibilityLabel: String? = nil,
+        @ViewBuilder content: @escaping () -> Content
+    ) {
         self.isStale = isStale
+        self.accessibilityLabel = accessibilityLabel
         self.content = content
     }
 
     var body: some View {
         ZStack {
-            VulpinoColors.background
+            VulpinoColors.widgetBackground
             content()
 
             // Stale indicator: subtle top-right dot
@@ -58,12 +81,15 @@ struct WidgetContainer<Content: View>: View {
                         Circle()
                             .fill(VulpinoColors.staleIndicator)
                             .frame(width: 6, height: 6)
+                            .accessibilityLabel("Data may be outdated")
                             .padding(8)
                     }
                     Spacer()
                 }
             }
         }
+        .accessibilityElement(children: accessibilityLabel != nil ? .combine : .contain)
+        .accessibilityLabel(accessibilityLabel ?? "")
     }
 }
 
@@ -77,23 +103,22 @@ struct MonoStatView: View {
     let isStale: Bool
 
     var body: some View {
-        WidgetContainer(isStale: isStale) {
+        WidgetContainer(isStale: isStale, accessibilityLabel: "\(label): \(value)\(isStale ? ", data may be outdated" : "")") {
             VStack(spacing: 4) {
                 Text(value)
                     .font(VulpinoTypography.statLarge)
                     .foregroundStyle(VulpinoColors.primary)
                     .minimumScaleFactor(0.5)
                     .lineLimit(1)
+                    .accessibilityHidden(true)
 
                 Text(label.lowercased())
                     .font(VulpinoTypography.label)
                     .foregroundStyle(VulpinoColors.secondary)
                     .tracking(0.5)
+                    .accessibilityHidden(true)
             }
             .padding()
-            .accessibilityElement(children: .combine)
-            .accessibilityLabel("\(label): \(value)")
-            .accessibilityAddTraits(.isStaticText)
         }
     }
 }
@@ -106,8 +131,13 @@ struct DualStatView: View {
     let values: [(label: String, value: String)]
     let isStale: Bool
 
+    private var accessibilityText: String {
+        let items = values.prefix(2).map { "\($0.label): \($0.value)" }.joined(separator: ", ")
+        return items + (isStale ? ", data may be outdated" : "")
+    }
+
     var body: some View {
-        WidgetContainer(isStale: isStale) {
+        WidgetContainer(isStale: isStale, accessibilityLabel: accessibilityText) {
             HStack(spacing: 24) {
                 ForEach(0..<min(2, values.count), id: \.self) { i in
                     VStack(spacing: 4) {
@@ -122,6 +152,7 @@ struct DualStatView: View {
                             .foregroundStyle(VulpinoColors.secondary)
                             .tracking(0.3)
                     }
+                    .accessibilityHidden(true)
                 }
             }
             .padding()
@@ -137,8 +168,13 @@ struct StatStackView: View {
     let values: [(label: String, value: String)]
     let isStale: Bool
 
+    private var accessibilityText: String {
+        let items = values.prefix(5).map { "\($0.label): \($0.value)" }.joined(separator: ", ")
+        return items + (isStale ? ", data may be outdated" : "")
+    }
+
     var body: some View {
-        WidgetContainer(isStale: isStale) {
+        WidgetContainer(isStale: isStale, accessibilityLabel: accessibilityText) {
             VStack(alignment: .leading, spacing: 6) {
                 ForEach(0..<min(5, values.count), id: \.self) { i in
                     HStack {
@@ -153,6 +189,7 @@ struct StatStackView: View {
                             .foregroundStyle(VulpinoColors.primary)
                             .minimumScaleFactor(0.7)
                     }
+                    .accessibilityHidden(true)
                 }
             }
             .padding()
@@ -169,7 +206,7 @@ struct HeadlineView: View {
     let isStale: Bool
 
     var body: some View {
-        WidgetContainer(isStale: isStale) {
+        WidgetContainer(isStale: isStale, accessibilityLabel: text + (isStale ? ", data may be outdated" : "")) {
             VStack {
                 Text(text)
                     .font(VulpinoTypography.headline)
@@ -177,6 +214,7 @@ struct HeadlineView: View {
                     .multilineTextAlignment(.center)
                     .lineLimit(4)
                     .minimumScaleFactor(0.8)
+                    .accessibilityHidden(true)
             }
             .padding()
         }
@@ -198,8 +236,16 @@ struct ListView: View {
         self.numbered = numbered
     }
 
+    private var accessibilityText: String {
+        let prefix = numbered ? "Numbered list: " : "List: "
+        let itemText = items.prefix(5).enumerated().map { i, item in
+            numbered ? "\(i + 1), \(item)" : item
+        }.joined(separator: ", ")
+        return prefix + itemText + (isStale ? ", data may be outdated" : "")
+    }
+
     var body: some View {
-        WidgetContainer(isStale: isStale) {
+        WidgetContainer(isStale: isStale, accessibilityLabel: accessibilityText) {
             VStack(alignment: .leading, spacing: 6) {
                 ForEach(0..<min(5, items.count), id: \.self) { i in
                     HStack(alignment: .top, spacing: 8) {
@@ -219,6 +265,7 @@ struct ListView: View {
                             .foregroundStyle(VulpinoColors.primary)
                             .lineLimit(2)
                     }
+                    .accessibilityHidden(true)
                 }
             }
             .padding()
@@ -242,8 +289,13 @@ struct GridView: View {
         Array(repeating: GridItem(.flexible(), spacing: 12), count: columns)
     }
 
+    private var accessibilityText: String {
+        let items = values.prefix(6).map { "\($0.label): \($0.value)" }.joined(separator: ", ")
+        return "Grid: " + items + (isStale ? ", data may be outdated" : "")
+    }
+
     var body: some View {
-        WidgetContainer(isStale: isStale) {
+        WidgetContainer(isStale: isStale, accessibilityLabel: accessibilityText) {
             LazyVGrid(columns: gridColumns, spacing: 12) {
                 ForEach(0..<min(6, values.count), id: \.self) { i in
                     VStack(spacing: 2) {
@@ -258,6 +310,7 @@ struct GridView: View {
                             .foregroundStyle(VulpinoColors.secondary)
                             .lineLimit(1)
                     }
+                    .accessibilityHidden(true)
                 }
             }
             .padding()
@@ -282,24 +335,41 @@ struct TimestampView: View {
         return "as of \(formatter.string(from: timestamp))"
     }
 
+    private var accessibilityText: String {
+        var text = "\(label): \(value)"
+        if let timestamp = timestamp {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .none
+            formatter.timeStyle = .short
+            text += ", as of \(formatter.string(from: timestamp))"
+        }
+        if isStale {
+            text += ", data may be outdated"
+        }
+        return text
+    }
+
     var body: some View {
-        WidgetContainer(isStale: isStale) {
+        WidgetContainer(isStale: isStale, accessibilityLabel: accessibilityText) {
             VStack(spacing: 6) {
                 Text(value)
                     .font(VulpinoTypography.statLarge)
                     .foregroundStyle(VulpinoColors.primary)
                     .minimumScaleFactor(0.5)
                     .lineLimit(1)
+                    .accessibilityHidden(true)
 
                 Text(label.lowercased())
                     .font(VulpinoTypography.label)
                     .foregroundStyle(VulpinoColors.secondary)
                     .tracking(0.5)
+                    .accessibilityHidden(true)
 
                 if timestamp != nil {
                     Text(timeString)
                         .font(VulpinoTypography.timestamp)
                         .foregroundStyle(VulpinoColors.tertiary)
+                        .accessibilityHidden(true)
                 }
             }
             .padding()
@@ -313,16 +383,18 @@ struct WidgetErrorView: View {
     let message: String
 
     var body: some View {
-        WidgetContainer {
+        WidgetContainer(accessibilityLabel: "Error: \(message)") {
             VStack(spacing: 8) {
                 Image(systemName: "exclamationmark.triangle")
                     .font(.system(size: 24))
                     .foregroundStyle(VulpinoColors.tertiary)
+                    .accessibilityHidden(true)
 
                 Text(message)
                     .font(VulpinoTypography.label)
                     .foregroundStyle(VulpinoColors.secondary)
                     .multilineTextAlignment(.center)
+                    .accessibilityHidden(true)
             }
             .padding()
         }

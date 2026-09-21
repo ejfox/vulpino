@@ -17,12 +17,18 @@
 		A1000007 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000007; };
 		A1000008 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000008; };
 		A1000009 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000009; };
+		A1000010 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000010; };
+		A1000011 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000011; };
+		A1000012 /* WidgetCreatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000012; };
+		A1000013 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000013; };
+		A1000014 /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000014; };
 
 		/* Shared Sources (App) */
 		A1100001 /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3000001; };
 		A1100002 /* WidgetConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3000002; };
 		A1100003 /* WidgetTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3000003; };
 		A1100004 /* TemplateViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3000004; };
+		A1100005 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3000005; };
 
 		/* Widget Sources */
 		A1200001 /* VulpinoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4000001; };
@@ -36,6 +42,7 @@
 		A1300005 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000008; };
 		A1300006 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000007; };
 		A1300007 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000009; };
+		A1300008 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3000005; };
 
 		/* Widget Extension */
 		A1400001 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5000001; };
@@ -51,7 +58,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = A0000001 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A6000001;
+			remoteGlobalIDString = AC000005;
 			remoteInfo = VulpinoWidgetExtension;
 		};
 /* End PBXContainerItemProxy section */
@@ -72,7 +79,7 @@
 
 /* Begin PBXFileReference section */
 		/* App Sources */
-		A2000001 /* VulpinoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VulpinoApp.swift; sourceTree = "<group>"; };
+		A2000001 /* VulpinoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/VulpinoApp.swift; sourceTree = "<group>"; };
 		A2000002 /* WidgetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetListView.swift; sourceTree = "<group>"; };
 		A2000003 /* WidgetEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetEditorView.swift; sourceTree = "<group>"; };
 		A2000004 /* WidgetEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetEditorViewModel.swift; sourceTree = "<group>"; };
@@ -81,12 +88,18 @@
 		A2000007 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		A2000008 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		A2000009 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		A2000010 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		A2000011 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A2000012 /* WidgetCreatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetCreatedView.swift; sourceTree = "<group>"; };
+		A2000013 /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
+		A2000014 /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticService.swift; sourceTree = "<group>"; };
 
 		/* Shared Sources */
 		A3000001 /* JSONValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
 		A3000002 /* WidgetConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConfig.swift; sourceTree = "<group>"; };
 		A3000003 /* WidgetTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTemplate.swift; sourceTree = "<group>"; };
 		A3000004 /* TemplateViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateViews.swift; sourceTree = "<group>"; };
+		A3000005 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 
 		/* Widget Sources */
 		A4000001 /* VulpinoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VulpinoWidget.swift; sourceTree = "<group>"; };
@@ -202,6 +215,7 @@
 				A3000002 /* WidgetConfig.swift */,
 				A3000003 /* WidgetTemplate.swift */,
 				A3000004 /* TemplateViews.swift */,
+				A3000005 /* Formatters.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -222,6 +236,10 @@
 				A2000003 /* WidgetEditorView.swift */,
 				A2000005 /* JSONTreeView.swift */,
 				A2000006 /* TemplatePickerView.swift */,
+				A2000010 /* OnboardingView.swift */,
+				A2000011 /* SettingsView.swift */,
+				A2000012 /* WidgetCreatedView.swift */,
+				A2000013 /* AppIconView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -240,6 +258,7 @@
 				A2000007 /* APIService.swift */,
 				A2000008 /* StorageService.swift */,
 				A2000009 /* KeychainService.swift */,
+				A2000014 /* HapticService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -352,10 +371,16 @@
 				A1000007 /* APIService.swift in Sources */,
 				A1000008 /* StorageService.swift in Sources */,
 				A1000009 /* KeychainService.swift in Sources */,
+				A1000010 /* OnboardingView.swift in Sources */,
+				A1000011 /* SettingsView.swift in Sources */,
+				A1000012 /* WidgetCreatedView.swift in Sources */,
+				A1000013 /* AppIconView.swift in Sources */,
+				A1000014 /* HapticService.swift in Sources */,
 				A1100001 /* JSONValue.swift in Sources */,
 				A1100002 /* WidgetConfig.swift in Sources */,
 				A1100003 /* WidgetTemplate.swift in Sources */,
 				A1100004 /* TemplateViews.swift in Sources */,
+				A1100005 /* Formatters.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +397,7 @@
 				A1300005 /* StorageService.swift in Sources */,
 				A1300006 /* APIService.swift in Sources */,
 				A1300007 /* KeychainService.swift in Sources */,
+				A1300008 /* Formatters.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

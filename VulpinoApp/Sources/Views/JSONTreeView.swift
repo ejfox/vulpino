@@ -254,7 +254,7 @@ struct JSONNodeRow: View {
                         } label: {
                             Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                                 .font(.system(size: 20))
-                                .foregroundStyle(isSelected ? .blue : (canSelect ? .secondary : .quaternary))
+                                .foregroundStyle(isSelected ? AnyShapeStyle(Color.blue) : (canSelect ? AnyShapeStyle(.secondary) : AnyShapeStyle(.quaternary)))
                         }
                         .buttonStyle(.plain)
                         .disabled(!canSelect)

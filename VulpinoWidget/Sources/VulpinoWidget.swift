@@ -3,7 +3,7 @@ import SwiftUI
 
 // MARK: - Timeline Provider
 
-struct VulpinoTimelineProvider: IntentTimelineProvider {
+struct VulpinoTimelineProvider: AppIntentTimelineProvider {
     typealias Entry = VulpinoWidgetEntry
     typealias Intent = SelectWidgetIntent
 
@@ -18,44 +18,38 @@ struct VulpinoTimelineProvider: IntentTimelineProvider {
         )
     }
 
-    func getSnapshot(for configuration: SelectWidgetIntent, in context: Context, completion: @escaping (VulpinoWidgetEntry) -> Void) {
-        let entry = placeholder(in: context)
-        completion(entry)
+    func snapshot(for configuration: SelectWidgetIntent, in context: Context) async -> VulpinoWidgetEntry {
+        placeholder(in: context)
     }
 
-    func getTimeline(for configuration: SelectWidgetIntent, in context: Context, completion: @escaping (Timeline<VulpinoWidgetEntry>) -> Void) {
-        Task {
-            // Get config ID from intent
-            guard let configIdString = configuration.widgetConfig?.identifier,
-                  let configId = UUID(uuidString: configIdString) else {
-                // No config selected - show placeholder
-                let entry = VulpinoWidgetEntry(
-                    date: Date(),
-                    config: nil,
-                    displayData: WidgetDisplayData(error: "Tap to configure")
-                )
-                let timeline = Timeline(entries: [entry], policy: .never)
-                completion(timeline)
-                return
-            }
-
-            // Fetch fresh data
-            let displayData = await StorageService.shared.refreshWidget(configId: configId)
-            let config = StorageService.shared.getConfig(id: configId)
-
+    func timeline(for configuration: SelectWidgetIntent, in context: Context) async -> Timeline<VulpinoWidgetEntry> {
+        // Get config ID from intent
+        guard let configIdString = configuration.widgetConfig?.id,
+              let configId = UUID(uuidString: configIdString) else {
+            // No config selected - show placeholder
             let entry = VulpinoWidgetEntry(
                 date: Date(),
-                config: config,
-                displayData: displayData
+                config: nil,
+                displayData: WidgetDisplayData(error: "Tap to configure")
             )
-
-            // Calculate next refresh
-            let refreshInterval = config?.refreshInterval.timeInterval ?? 1800
-            let nextRefresh = Date().addingTimeInterval(refreshInterval)
-
-            let timeline = Timeline(entries: [entry], policy: .after(nextRefresh))
-            completion(timeline)
+            return Timeline(entries: [entry], policy: .never)
         }
+
+        // Fetch fresh data
+        let displayData = await StorageService.shared.refreshWidget(configId: configId)
+        let config = StorageService.shared.getConfig(id: configId)
+
+        let entry = VulpinoWidgetEntry(
+            date: Date(),
+            config: config,
+            displayData: displayData
+        )
+
+        // Calculate next refresh
+        let refreshInterval = config?.refreshInterval.timeInterval ?? 1800
+        let nextRefresh = Date().addingTimeInterval(refreshInterval)
+
+        return Timeline(entries: [entry], policy: .after(nextRefresh))
     }
 }
 
@@ -120,7 +114,7 @@ struct VulpinoWidget: Widget {
     let kind: String = "VulpinoWidget"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(
+        AppIntentConfiguration(
             kind: kind,
             intent: SelectWidgetIntent.self,
             provider: VulpinoTimelineProvider()

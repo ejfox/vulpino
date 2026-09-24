@@ -539,7 +539,7 @@
 				CODE_SIGN_ENTITLEMENTS = VulpinoApp/Vulpino.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Z7Q56V2SQX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VulpinoApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Vulpino;
@@ -569,7 +569,7 @@
 				CODE_SIGN_ENTITLEMENTS = VulpinoApp/Vulpino.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Z7Q56V2SQX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VulpinoApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Vulpino;
@@ -597,7 +597,7 @@
 				CODE_SIGN_ENTITLEMENTS = VulpinoWidget/VulpinoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Z7Q56V2SQX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "VulpinoWidget/VulpinoWidget-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = VulpinoWidget;
@@ -623,7 +623,7 @@
 				CODE_SIGN_ENTITLEMENTS = VulpinoWidget/VulpinoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Z7Q56V2SQX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "VulpinoWidget/VulpinoWidget-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = VulpinoWidget;
